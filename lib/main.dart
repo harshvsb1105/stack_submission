@@ -28,41 +28,42 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-
 class _MyHomePageState extends State<MyHomePage> {
   final assetsAudioPlayer = AssetsAudioPlayer();
   bool _play = false;
 
+Future loadAudio() async{
+ await assetsAudioPlayer.open(
+      Playlist(audios: [
+        Audio(
+          "assets/audio/numb.mp3",
+          metas: Metas(
+            title: "Comfortably Numb",
+            artist: "Pink Floyd",
+            album: "The Dark Side Of The Moon",
+            image: MetasImage.asset(
+                "assets/numb_pic.jpeg"), //can be MetasImage.network
+          ),
+        ),
+        Audio(
+          "assets/audio/wish.mp3",
+          metas: Metas(
+            title: "Wish You Were Here",
+            artist: "Pink Floyd",
+            album: "Wish You Were Here",
+            image: MetasImage.asset(
+                "assets/wish_pic.jpeg"), //can be MetasImage.network
+          ),
+        )
+      ]),
+      autoStart: false,
+      loopMode: LoopMode.playlist //loop the full playlist
+  );
+
+}
   @override
   void initState() {
-    final audio1 = Audio.network("assets/audio/wish.mp3",
-      metas: Metas(
-        title:  "Wish You Were Here",
-        artist: "Pink Floyd",
-        album: "Wish You Were Here",
-        image: MetasImage.asset("assets/wish_pic.jpeg"), //can be MetasImage.network
-      ),
-    );
-
-    final audio2 = Audio.network("assets/audio/numb.mp3",
-      metas: Metas(
-        title:  "Comfortably Numb",
-        artist: "Pink Floyd",
-        album: "The Dark Side Of The Moon",
-        image: MetasImage.asset("assets/numb_pic.jpeg"), //can be MetasImage.network
-      ),
-    );
-
-    assetsAudioPlayer.open(
-        Playlist(
-            audios: [
-              audio1,
-              audio2
-            ]
-        ),
-        loopMode: LoopMode.playlist //loop the full playlist
-    );
-
+   loadAudio();
     super.initState();
   }
 
@@ -277,15 +278,54 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Center(
                             child: AudioWidget.assets(
                                 play: _play,
-                                child: RaisedButton(
-                                    child: Text(
-                                      _play ? "pause" : "play",
+                                child: Row(
+                                  children: [
+                                    IconButton(
+                                      icon:  Icon(Icons.skip_previous_rounded, color: Colors.white60,),
+                                      onPressed: () {
+                                        if(_play){
+                                          assetsAudioPlayer.previous();
+                                        } else {
+                                          assetsAudioPlayer.pause();
+                                        }
+                                      },
                                     ),
-                                    onPressed: () {
-                                      assetsAudioPlayer.next();
-                                    }),
-                                loopMode: LoopMode.playlist,
-                                path: "assets/audio/wish.mp3")),
+                                    NeuContainer(
+                                      height: MediaQuery.of(context).size.height * 0.06,
+                                      width: MediaQuery.of(context).size.width * 0.125,
+                                      color: Colors.grey.withOpacity(0.5),
+                                      child: Center(
+                                        child: IconButton(
+                                          icon:  !_play ? Icon(Icons.play_arrow, color: Colors.white60,) : Icon(Icons.pause, color: Colors.white60,),
+                                          onPressed: () async {
+                                              setState(()  {
+
+                                              });
+                                              _play = !_play;
+                                              if(!_play) {
+                                                 await assetsAudioPlayer.pause();
+                                              } else if(_play) {
+                                                 await assetsAudioPlayer.play();
+                                              }
+
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                    IconButton(
+                                      icon:  Icon(Icons.skip_next_rounded, color: Colors.white60,),
+                                      onPressed: () {
+                                        if(_play){
+                                          assetsAudioPlayer.next();
+                                        } else {
+                                          assetsAudioPlayer.pause();
+                                        }
+                                      },
+                                    ),
+                                  ],
+                                ),
+                                loopMode: LoopMode.none,
+                                path: "")),
                       ),
                       NeuContainer(
                         height: displayHeight * 0.20,
