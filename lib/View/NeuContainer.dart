@@ -14,7 +14,7 @@ class NeuContainer extends StatelessWidget {
       height: height,
       width: width,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(10)),
+        borderRadius: BorderRadius.all(Radius.circular(15)),
         color: Colors.transparent,
         boxShadow: [
           BoxShadow(
@@ -28,7 +28,7 @@ class NeuContainer extends StatelessWidget {
         height: height,
         width: width,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderRadius: BorderRadius.all(Radius.circular(15)),
           color: color,
           border: Border.all(color: Colors.white54),
           boxShadow: [

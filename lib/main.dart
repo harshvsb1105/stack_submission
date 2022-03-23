@@ -87,7 +87,7 @@ Future loadAudio() async{
               child: Column(
                 children: [
                   SizedBox(
-                    height: displayHeight * 0.05,
+                    height: displayHeight * 0.01,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -126,7 +126,7 @@ Future loadAudio() async{
                     ],
                   ),
                   SizedBox(
-                    height: displayHeight * 0.10,
+                    height: displayHeight * 0.05
                   ),
                   Align(
                     alignment: Alignment.centerLeft,
@@ -142,7 +142,7 @@ Future loadAudio() async{
                     ),
                   ),
                   SizedBox(
-                    height: displayHeight * 0.05,
+                    height: displayHeight * 0.02,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -377,6 +377,73 @@ Future loadAudio() async{
                       )
                     ],
                   ),
+                  SizedBox(
+                    height: displayHeight * 0.05,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Statistics",
+                        style: TextStyle(
+                          fontFamily: 'Avenir',
+                          fontSize: 20,
+                          color: const Color(0xfff8f8fc),
+                          fontWeight: FontWeight.bold,
+                          height: 1.1176470588235294,
+                        ),
+                      ),
+                      Text(
+                        "Month",
+                        style: TextStyle(
+                          fontFamily: 'Avenir',
+                          fontSize: 15,
+                          color: const Color(0xfff8f8fc),
+                          fontWeight: FontWeight.w500,
+                          height: 1.1176470588235294,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: displayHeight * 0.02,
+                  ),
+                  NeuContainer(
+                    height: displayHeight * 0.25,
+                    width: double.infinity,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment:
+                            MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Electricity Usage",
+                                style: TextStyle(
+                                    fontFamily: 'Avenir',
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Icon(
+                                Icons.arrow_forward_ios_rounded,
+                                color: Colors.white,
+                                size: 18,
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: displayHeight * 0.07,
+                          ),
+                          Center(
+                            child: Icon(Icons.add, color: Colors.white,),
+                          )
+                        ],
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),
